@@ -15,7 +15,7 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    from .routers import auth, events, sessions, attendees, tickets, payments, checkin
+    from .routers import auth, events, sessions, attendees, tickets, payments, checkin, registration
 
     app.include_router(auth.router, prefix="/api/auth", tags=["auth"]) 
     app.include_router(events.router, prefix="/api/events", tags=["events"]) 
@@ -24,6 +24,7 @@ def create_app() -> FastAPI:
     app.include_router(tickets.router, prefix="/api/tickets", tags=["tickets"]) 
     app.include_router(payments.router, prefix="/api/payments", tags=["payments"]) 
     app.include_router(checkin.router, prefix="/api/checkin", tags=["checkin"]) 
+    app.include_router(registration.router, prefix="/api/registration", tags=["registration"]) 
 
     @app.on_event("startup")
     def on_startup() -> None:
